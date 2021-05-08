@@ -1,0 +1,66 @@
+﻿<!--Abhishek Sawant, 8683623-->
+<Window x:Class="JoesLawnService.DataDisplay"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:JoesLawnService"
+        mc:Ignorable="d"
+        Title="Data Display" Height="450" Width="850" ResizeMode="NoResize" Background="WhiteSmoke" Icon="images/favicon.ico">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <!--combobox-->
+        <StackPanel Grid.Row="0" Grid.Column="0" VerticalAlignment="Center">
+            <ComboBox Name="columnNames" Grid.Row="0"  Margin="5" ItemsSource="{Binding Columns}" SelectedItem="{Binding SelectedColumn}" SelectedIndex="1"></ComboBox>
+        </StackPanel>
+
+        <!--listbox-->
+        <ListBox Grid.Row="1" Grid.ColumnSpan="2" ItemsSource="{Binding Customers}" SelectedItem="{Binding SelectedCustomer}"
+                 Margin="5" HorizontalContentAlignment="Stretch">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1.5*"/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="1.5*"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0" HorizontalContentAlignment="Left" Content="{Binding Name}"/>
+                        <Label Grid.Column="1" HorizontalContentAlignment="Left" Content="{Binding PostalCode}"/>
+                        <Label Grid.Column="2" HorizontalContentAlignment="Left" Content="{Binding Phone}"/>
+                        <Label Grid.Column="3" HorizontalContentAlignment="Left" Content="{Binding Lawn}"/>
+                        <Label Grid.Column="4" HorizontalContentAlignment="Left" Content="{Binding SelectedType}"/>
+                        <Label Grid.Column="5" HorizontalContentAlignment="Left" Content="{Binding Date}"/>
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        <!--Buttons-->
+        <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Name="Search" Content="Search" Margin="15,15" MinWidth="100" Click="Search_Click"/>
+            <Button Name="Sort" Content="Sort" Margin="15,15" MinWidth="100" Click="Sort_Click"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="2" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Name="Edit" Content="Edit" Margin="15,15" MinWidth="100" Click="Edit_Click"/>
+            <Button Name="Delete" Content="Delete" Margin="15,15" MinWidth="100" Click="Delete_Click"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="2" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Left">
+            <Button Name="AddData" Content="Add Customers" Margin="15,15" MinWidth="100" Click="AddData_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>
